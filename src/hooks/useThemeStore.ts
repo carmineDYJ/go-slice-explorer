@@ -2,14 +2,14 @@ import { create } from "zustand";
 
 const lightTheme = {
   fontColor: "#1a2a3a",
-  specialFontColor: "#3498db",
+  themeColor: "#3498db",
   backgroundColor: "#dddddd",
   dropDownBackgroundColor: "white",
 };
 //TODO add dark theme
 const darkTheme = {
   fontColor: "red",
-  specialFontColor: "",
+  themeColor: "red",
   backgroundColor: "",
   dropDownBackgroundColor: "",
 };

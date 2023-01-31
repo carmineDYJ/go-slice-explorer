@@ -4,6 +4,9 @@ import { useThemeStore } from "./hooks/useThemeStore";
 const H1 = styled.h1`
   color: ${(props) => props.theme.fontColor};
 `;
+const H1Span = styled.span`
+  color: ${(props) => props.theme.themeColor};
+`;
 const Button = styled.button``;
 
 const App = () => {
@@ -13,7 +16,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Button onClick={toggleTheme}>Toggle Theme</Button>
-      <H1>Python Poetry Explorer</H1>
+      <H1>
+        Python <H1Span>Poetry</H1Span> Explorer
+      </H1>
     </ThemeProvider>
   );
 };

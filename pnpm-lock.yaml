@@ -9,6 +9,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-i18next: ^12.1.4
+  sanitize.css: ^13.0.0
   styled-components: ^5.3.6
   typescript: ^4.9.3
   vite: ^4.0.0
@@ -20,6 +21,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
+  sanitize.css: 13.0.0
   styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
   zustand: 4.3.2_react@18.2.0
 
@@ -837,6 +839,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /sanitize.css/13.0.0:
+    resolution: {integrity: sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==}
+    dev: false
 
   /scheduler/0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}

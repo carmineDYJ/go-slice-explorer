@@ -4,6 +4,9 @@
     "part2": "Poetry",
     "part3": "Explorer"
   },
-  "options": "I wanna ...",
+  "options": {
+    "header": "I wanna ...",
+    "description": "Find the proper commands without having to search the web."
+  },
   "results": "Usage"
 }

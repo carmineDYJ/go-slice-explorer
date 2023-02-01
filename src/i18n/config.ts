@@ -1,11 +1,22 @@
-import i18next from "i18next";
+import i18next, { ResourceLanguage } from "i18next";
 import { initReactI18next } from "react-i18next";
 import en from "./en.json";
 import zh from "./zh.json";
 
-export type Languages = "en" | "zh";
+const Languages = {
+  en: en,
+  zh: zh,
+};
+export type Language = keyof typeof Languages;
+type LanguageJson = typeof Languages[Language];
 
-const resources: Record<Languages, any> = {
+declare module "i18next" {
+  export interface ResourceLanguage {
+    translation: LanguageJson;
+  }
+}
+
+const resources: Record<string, ResourceLanguage> | undefined = {
   en: {
     translation: en,
   },

@@ -37,12 +37,10 @@ const Main = styled.main`
   flex-basis: 0;
   flex-grow: 999;
   min-inline-size: 50%;
-  border: 1px solid red;
 `;
 const Aside = styled.aside`
   flex-basis: 340px;
   flex-grow: 1;
-  border 1px solid blue;
 `;
 
 const App = () => {
@@ -59,7 +57,9 @@ const App = () => {
         onChange={(event) => changeLanguage(event.target.value as Language)}
       >
         {Object.keys(Languages).map((language, index) => (
-          <Option key={index}>{language}</Option>
+          <Option key={index} value={language}>
+            {t("languageSelect." + language)}
+          </Option>
         ))}
       </Select>
       <Wrapper>

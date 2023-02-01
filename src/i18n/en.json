@@ -8,5 +8,9 @@
     "header": "I wanna ...",
     "description": "Find the proper commands without having to search the web."
   },
-  "results": "Usage"
+  "results": "Usage",
+  "languageSelect": {
+    "en": "English",
+    "zh": "中文"
+  }
 }

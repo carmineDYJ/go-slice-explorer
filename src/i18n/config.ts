@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import en from "./en.json";
 import zh from "./zh.json";
 
-const Languages = {
+export const Languages = {
   en: en,
   zh: zh,
 };
@@ -16,7 +16,7 @@ declare module "i18next" {
   }
 }
 
-const resources: Record<string, ResourceLanguage> | undefined = {
+const resources: Record<string, ResourceLanguage> = {
   en: {
     translation: en,
   },

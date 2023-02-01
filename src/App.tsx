@@ -9,8 +9,11 @@ import { useI18nStore } from "./hooks/useI18nStore";
 import Options from "./components/Options";
 import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
+import { Language, Languages } from "./i18n/config";
 
 const Button = styled.button``;
+const Select = styled.select``;
+const Option = styled.option``;
 const H1 = styled.h1``;
 const H1Span = styled.span`
   color: ${(props) => props.theme.themeColor};
@@ -52,7 +55,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Button onClick={toggleTheme}>Toggle Theme</Button>
-      <Button onClick={() => changeLanguage("zh")}>Change Language</Button>
+      <Select
+        onChange={(event) => changeLanguage(event.target.value as Language)}
+      >
+        {Object.keys(Languages).map((language, index) => (
+          <Option key={index}>{language}</Option>
+        ))}
+      </Select>
       <Wrapper>
         <Aside>
           <H1>

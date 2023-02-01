@@ -15,6 +15,7 @@ const H1 = styled.h1``;
 const H1Span = styled.span`
   color: ${(props) => props.theme.themeColor};
 `;
+const P = styled.p``;
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -51,6 +52,7 @@ const App = () => {
             {t("header.part1")} <H1Span>{t("header.part2")}</H1Span>{" "}
             {t("header.part3")}
           </H1>
+          <P>{t("options.description")}</P>
           <Options />
         </Aside>
         <Main>

@@ -13,7 +13,7 @@ declare module "styled-components" {
 export const lightTheme: DefaultTheme = {
   fontColor: "#1a2a3a",
   themeColor: "#3498db",
-  backgroundColor: "#dddddd",
+  backgroundColor: "#f6f6f6",
   dropDownBackgroundColor: "white",
 };
 //TODO perfect dark theme

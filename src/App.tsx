@@ -22,6 +22,13 @@ const Wrapper = styled.div`
   gap: 80px;
   max-width: 1280px;
   margin-inline: auto;
+  @media (max-width: 1376px) {
+    margin-inline: 48px;
+  }
+  @media (max-width: 768px) {
+    width: 90vw;
+    margin-inline: auto;
+  }
 `;
 const Main = styled.main`
   flex-basis: 0;

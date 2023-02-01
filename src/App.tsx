@@ -19,19 +19,24 @@ const H1Span = styled.span`
   color: ${(props) => props.theme.themeColor};
 `;
 const P = styled.p``;
-const Wrapper = styled.div`
+const PageWrapper = styled.div`
+  & {
+    max-width: 1280px;
+    margin-inline: auto;
+    @media (max-width: 1376px) {
+      margin-inline: 48px;
+    }
+    @media (max-width: 768px) {
+      width: 90vw;
+      margin-inline: auto;
+    }
+  }
+`;
+const UtilsWrapper = styled.div``;
+const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
-  max-width: 1280px;
-  margin-inline: auto;
-  @media (max-width: 1376px) {
-    margin-inline: 48px;
-  }
-  @media (max-width: 768px) {
-    width: 90vw;
-    margin-inline: auto;
-  }
 `;
 const Main = styled.main`
   flex-basis: 0;
@@ -52,29 +57,33 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Button onClick={toggleTheme}>Toggle Theme</Button>
-      <Select
-        onChange={(event) => changeLanguage(event.target.value as Language)}
-      >
-        {Object.keys(Languages).map((language, index) => (
-          <Option key={index} value={language}>
-            {t("languageSelect." + language)}
-          </Option>
-        ))}
-      </Select>
-      <Wrapper>
-        <Aside>
-          <H1>
-            {t("header.part1")} <H1Span>{t("header.part2")}</H1Span>{" "}
-            {t("header.part3")}
-          </H1>
-          <P>{t("options.description")}</P>
-          <Options />
-        </Aside>
-        <Main>
-          <Results />
-        </Main>
-      </Wrapper>
+      <PageWrapper>
+        <UtilsWrapper>
+          <Button onClick={toggleTheme}>Toggle Theme</Button>
+          <Select
+            onChange={(event) => changeLanguage(event.target.value as Language)}
+          >
+            {Object.keys(Languages).map((language, index) => (
+              <Option key={index} value={language}>
+                {t("languageSelect." + language)}
+              </Option>
+            ))}
+          </Select>
+        </UtilsWrapper>
+        <MainWrapper>
+          <Aside>
+            <H1>
+              {t("header.part1")} <H1Span>{t("header.part2")}</H1Span>{" "}
+              {t("header.part3")}
+            </H1>
+            <P>{t("options.description")}</P>
+            <Options />
+          </Aside>
+          <Main>
+            <Results />
+          </Main>
+        </MainWrapper>
+      </PageWrapper>
     </ThemeProvider>
   );
 };

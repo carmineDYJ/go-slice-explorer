@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const H1 = styled.h1`
-  color: ${(props) => props.theme.fontColor};
-`;
+const H1 = styled.h1``;
 
 const Results = () => {
   return (

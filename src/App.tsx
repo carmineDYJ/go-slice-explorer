@@ -8,11 +8,10 @@ import { useThemeStore } from "./hooks/useThemeStore";
 import { useI18nStore } from "./hooks/useI18nStore";
 import Options from "./components/Options";
 import Results from "./components/Results";
+import GlobalStyle from "./styles/globalStyle";
 
 const Button = styled.button``;
-const H1 = styled.h1`
-  color: ${(props) => props.theme.fontColor};
-`;
+const H1 = styled.h1``;
 const H1Span = styled.span`
   color: ${(props) => props.theme.themeColor};
 `;
@@ -43,6 +42,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Button onClick={toggleTheme}>Toggle Theme</Button>
       <Button onClick={() => changeLanguage("zh")}>Change Language</Button>
       <Wrapper>

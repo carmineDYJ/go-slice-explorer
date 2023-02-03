@@ -1,14 +1,14 @@
-import React from "react";
+import { Fragment } from "react";
 import styled from "styled-components";
 
 const H1 = styled.h1``;
 
 const Results = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <H1>Usage</H1>
       <H1>Note</H1>
-    </React.Fragment>
+    </Fragment>
   );
 };
 export default Results;

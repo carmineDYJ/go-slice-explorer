@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import {
-  PrimaryOption,
-  PrimaryOptionKey,
-  SecondaryOption,
-} from "../data/options";
-import en from "../i18n/en";
+import { PrimaryOption, SecondaryOption } from "../data/options";
 
 const H2 = styled.h2`
   color: ${(props) => props.theme.themeColor};
@@ -15,28 +10,30 @@ const OptionsSelect = styled.select`
   display: block;
 `;
 const Option = styled.option``;
-
-const Options = () => {
+type OptionsProps = {
+  primaryOptionIndex: number;
+  setPrimaryOptionIndex: Dispatch<SetStateAction<number>>;
+};
+const Options = (props: OptionsProps) => {
   const { t } = useTranslation();
-  const [primaryOption, setPrimaryOption] = React.useState<
-    PrimaryOptionKey | undefined
-  >();
-  const [primaryOptions, setPrimaryOptions] = React.useState<
-    Array<PrimaryOption>
-  >(
+  const { primaryOptionIndex, setPrimaryOptionIndex } = props;
+  const [primaryOptions, setPrimaryOptions] = useState<Array<PrimaryOption>>(
     t("primaryOptions", {
       returnObjects: true,
     })
   );
-  const [secondaryOptions, setSecondaryOptions] = React.useState<
+  const [secondaryOptions, setSecondaryOptions] = useState<
     Array<SecondaryOption> | undefined
   >();
   useEffect(() => {
     let secondaryOptions;
-    if (primaryOption) {
-      secondaryOptions = t(`secondaryOptions.${primaryOption}`, {
-        returnObjects: true,
-      });
+    if (primaryOptionIndex >= 0) {
+      secondaryOptions = t(
+        `secondaryOptions.${primaryOptions[primaryOptionIndex].key}`,
+        {
+          returnObjects: true,
+        }
+      );
       if (!Array.isArray(secondaryOptions)) {
         secondaryOptions = undefined;
       }
@@ -44,24 +41,24 @@ const Options = () => {
       secondaryOptions = undefined;
     }
     setSecondaryOptions(secondaryOptions as Array<SecondaryOption> | undefined);
-  }, [primaryOption]);
+  }, [primaryOptionIndex]);
   return (
-    <React.Fragment>
+    <Fragment>
       <H2>{t("options.header")}</H2>
       <OptionsSelect
         defaultValue="placeholder"
         onChange={(event) => {
           setSecondaryOptions(undefined);
-          setPrimaryOption(event.target.value as PrimaryOptionKey);
+          setPrimaryOptionIndex(parseInt(event.target.value));
         }}
       >
-        {primaryOption ? null : (
+        {primaryOptionIndex >= 0 ? null : (
           <Option disabled value="placeholder">
             {t("optionSelect.placeholder")}
           </Option>
         )}
         {primaryOptions.map((option, index) => (
-          <Option key={index} value={option.key}>
+          <Option key={index} value={index}>
             {t(`primaryOptions.${index}.option`)}
           </Option>
         ))}
@@ -69,13 +66,15 @@ const Options = () => {
       {secondaryOptions ? (
         <OptionsSelect>
           {secondaryOptions.map((option, index) => (
-            <Option key={index}>
-              {t(`secondaryOptions.${primaryOption}.${index}.option`)}
+            <Option key={index} value={index}>
+              {t(
+                `secondaryOptions.${primaryOptions[primaryOptionIndex].key}.${index}.option`
+              )}
             </Option>
           ))}
         </OptionsSelect>
       ) : null}
-    </React.Fragment>
+    </Fragment>
   );
 };
 

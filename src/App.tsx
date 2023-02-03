@@ -10,6 +10,7 @@ import { Language, Languages } from "./i18n/config";
 import Options from "./components/Options";
 import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
+import { useState } from "react";
 
 const Button = styled.button``;
 const Select = styled.select``;
@@ -56,6 +57,7 @@ const App = () => {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggle);
   const changeLanguage = useI18nStore((state) => state.change);
+  const [primaryOptionIndex, setPrimaryOptionIndex] = useState(-1);
 
   return (
     <ThemeProvider theme={theme}>
@@ -80,7 +82,10 @@ const App = () => {
               {t("header.part3")}
             </H1>
             <P>{t("options.description")}</P>
-            <Options />
+            <Options
+              primaryOptionIndex={primaryOptionIndex}
+              setPrimaryOptionIndex={setPrimaryOptionIndex}
+            />
           </Aside>
           <Main>
             <Results />

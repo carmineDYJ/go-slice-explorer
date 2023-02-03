@@ -10,13 +10,21 @@ const OptionsSelect = styled.select`
   display: block;
 `;
 const Option = styled.option``;
+
 type OptionsProps = {
   primaryOptionIndex: number;
   setPrimaryOptionIndex: Dispatch<SetStateAction<number>>;
+  secondaryOptionIndex: number;
+  setSecondaryOptionIndex: Dispatch<SetStateAction<number>>;
 };
 const Options = (props: OptionsProps) => {
   const { t } = useTranslation();
-  const { primaryOptionIndex, setPrimaryOptionIndex } = props;
+  const {
+    primaryOptionIndex,
+    setPrimaryOptionIndex,
+    secondaryOptionIndex,
+    setSecondaryOptionIndex,
+  } = props;
   const [primaryOptions, setPrimaryOptions] = useState<Array<PrimaryOption>>(
     t("primaryOptions", {
       returnObjects: true,
@@ -48,7 +56,9 @@ const Options = (props: OptionsProps) => {
       <OptionsSelect
         defaultValue="placeholder"
         onChange={(event) => {
+          //TODO maybe -2 here
           setSecondaryOptions(undefined);
+          setSecondaryOptionIndex(-1);
           setPrimaryOptionIndex(parseInt(event.target.value));
         }}
       >
@@ -64,7 +74,17 @@ const Options = (props: OptionsProps) => {
         ))}
       </OptionsSelect>
       {secondaryOptions ? (
-        <OptionsSelect>
+        <OptionsSelect
+          defaultValue="placeholder"
+          onChange={(event) =>
+            setSecondaryOptionIndex(parseInt(event.target.value))
+          }
+        >
+          {secondaryOptionIndex >= 0 ? null : (
+            <Option disabled value="placeholder">
+              ...
+            </Option>
+          )}
           {secondaryOptions.map((option, index) => (
             <Option key={index} value={index}>
               {t(

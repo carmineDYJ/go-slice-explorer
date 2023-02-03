@@ -11,6 +11,7 @@ import Options from "./components/Options";
 import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
 import { useState } from "react";
+import { OptionIndexStatus } from "./data/options";
 
 const Button = styled.button``;
 const Select = styled.select``;
@@ -57,7 +58,12 @@ const App = () => {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggle);
   const changeLanguage = useI18nStore((state) => state.change);
-  const [primaryOptionIndex, setPrimaryOptionIndex] = useState(-1);
+  const [primaryOptionIndex, setPrimaryOptionIndex] = useState(
+    OptionIndexStatus.NoOption
+  );
+  const [secondaryOptionIndex, setSecondaryOptionIndex] = useState(
+    OptionIndexStatus.NoOption
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -85,10 +91,15 @@ const App = () => {
             <Options
               primaryOptionIndex={primaryOptionIndex}
               setPrimaryOptionIndex={setPrimaryOptionIndex}
+              secondaryOptionIndex={secondaryOptionIndex}
+              setSecondaryOptionIndex={setSecondaryOptionIndex}
             />
           </Aside>
           <Main>
-            <Results />
+            <Results
+              primaryOptionIndex={primaryOptionIndex}
+              secondaryOptionIndex={secondaryOptionIndex}
+            />
           </Main>
         </MainWrapper>
       </PageWrapper>

@@ -1,4 +1,6 @@
-export const en = {
+import { enPrimaryOptions, enSecondaryOptions } from "../data/options";
+
+const en = {
   header: {
     part1: "Python",
     part2: "Poetry",
@@ -13,7 +15,10 @@ export const en = {
     en: "English",
     zh: "中文",
   },
-  primaryOptions: {
-    setup: "setup",
+  optionSelect: {
+    placeholder: "Select what you need",
   },
+  primaryOptions: enPrimaryOptions,
+  secondaryOptions: enSecondaryOptions,
 };
+export default en;

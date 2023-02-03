@@ -6,10 +6,10 @@ import styled, { ThemeProvider } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "./hooks/useThemeStore";
 import { useI18nStore } from "./hooks/useI18nStore";
+import { Language, Languages } from "./i18n/config";
 import Options from "./components/Options";
 import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
-import { Language, Languages } from "./i18n/config";
 
 const Button = styled.button``;
 const Select = styled.select``;
@@ -32,7 +32,10 @@ const PageWrapper = styled.div`
     }
   }
 `;
-const UtilsWrapper = styled.div``;
+const UtilsWrapper = styled.div`
+  margin-block-start: 24px;
+  margin-block-end: 48px;
+`;
 const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -65,7 +68,7 @@ const App = () => {
           >
             {Object.keys(Languages).map((language, index) => (
               <Option key={index} value={language}>
-                {t("languageSelect." + language)}
+                {t(`languageSelect.${language}`)}
               </Option>
             ))}
           </Select>

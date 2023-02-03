@@ -1,13 +1,15 @@
 import i18next, { ResourceLanguage } from "i18next";
 import { initReactI18next } from "react-i18next";
-import { en } from "./en";
-import { zh } from "./zh";
+import en from "./en";
+import zh from "./zh";
+
+export type Language = "en" | "zh";
 
 export const Languages = {
   en: en,
   zh: zh,
 };
-export type Language = keyof typeof Languages;
+
 type LanguageJson = typeof Languages[Language];
 
 declare module "i18next" {

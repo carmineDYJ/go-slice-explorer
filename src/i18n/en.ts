@@ -8,7 +8,7 @@ const en = {
   },
   options: {
     header: "I wanna ...",
-    description: "Find the proper commands without having to search the web.",
+    description: "Get the proper commands without having to search the web.",
   },
   results: "Usage",
   languageSelect: {

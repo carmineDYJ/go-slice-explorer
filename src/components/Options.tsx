@@ -19,6 +19,7 @@ const OptionsSelect = styled.select`
   background-color: ${(props) => props.theme.dropDownBackgroundColor};
   background-image: url(${dropDownArrow});
   background-position: bottom 50% right 3%;
+  padding: 12px 22px 12px 12px;
 `;
 const Option = styled.option``;
 

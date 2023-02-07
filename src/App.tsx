@@ -49,7 +49,7 @@ const Main = styled.main`
   min-inline-size: 50%;
 `;
 const Aside = styled.aside`
-  flex-basis: 340px;
+  flex-basis: 420px;
   flex-grow: 1;
 `;
 

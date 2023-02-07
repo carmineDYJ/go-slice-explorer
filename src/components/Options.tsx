@@ -7,12 +7,18 @@ import {
   PrimaryOption,
   SecondaryOption,
 } from "../data/options";
+import dropDownArrow from "../assets/drop-down-arrow.svg";
 
 const H2 = styled.h2`
   color: ${(props) => props.theme.themeColor};
 `;
 const OptionsSelect = styled.select`
   display: block;
+  width: 100%;
+  border: none;
+  background-color: ${(props) => props.theme.dropDownBackgroundColor};
+  background-image: url(${dropDownArrow});
+  background-position: bottom 50% right 3%;
 `;
 const Option = styled.option``;
 

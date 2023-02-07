@@ -1,19 +1,41 @@
 //TODO add enum for option key, -1 for no option, -2 for primary independent option, etc.
 
-export type PrimaryOptionKey = "setup" | "add" | "remove";
+const primaryOptionKey = ["setup"] as const;
+type PrimaryOptionKey = typeof primaryOptionKey[number];
+export const isPrimaryOptionKey = (
+  optionKey: any
+): optionKey is PrimaryOptionKey => primaryOptionKey.includes(optionKey);
+type NoSubPrimaryOptionKey = "add";
 
-export type PrimaryOption = { key: PrimaryOptionKey; option: string };
+// ignore prettier below
+export type PrimaryOption =
+  | {
+      key: PrimaryOptionKey;
+      option: string;
+    }
+  | {
+      key: NoSubPrimaryOptionKey;
+      option: string;
+      usage: string;
+      note: string;
+    };
 
 export type SecondaryOption = { option: string; usage: string; note: string };
 
 export enum OptionIndexStatus {
-  NoOption = -1,
-  PrimaryIndependentOption = -2,
+  HasOption = 0,
+  NoPrimary = -1,
+  PrimaryNoSub = -2,
 }
 
 export const enPrimaryOptions: Array<PrimaryOption> = [
   { key: "setup", option: "use poetry" },
-  { key: "add", option: "add a package" },
+  {
+    key: "add",
+    option: "add a dependency",
+    usage: "poetry add <dependency>",
+    note: "",
+  },
 ];
 
 export const zhPrimaryOptions: Array<PrimaryOption> = [

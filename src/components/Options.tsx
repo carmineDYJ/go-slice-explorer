@@ -1,7 +1,12 @@
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { PrimaryOption, SecondaryOption } from "../data/options";
+import {
+  isPrimaryOptionKey,
+  OptionIndexStatus,
+  PrimaryOption,
+  SecondaryOption,
+} from "../data/options";
 
 const H2 = styled.h2`
   color: ${(props) => props.theme.themeColor};
@@ -17,6 +22,7 @@ type OptionsProps = {
   secondaryOptionIndex: number;
   setSecondaryOptionIndex: Dispatch<SetStateAction<number>>;
 };
+
 const Options = (props: OptionsProps) => {
   const { t } = useTranslation();
   const {
@@ -56,13 +62,15 @@ const Options = (props: OptionsProps) => {
       <OptionsSelect
         defaultValue="placeholder"
         onChange={(event) => {
-          //TODO maybe -2 here
           setSecondaryOptions(undefined);
-          setSecondaryOptionIndex(-1);
-          setPrimaryOptionIndex(parseInt(event.target.value));
+          const optionIndex = parseInt(event.target.value);
+          setPrimaryOptionIndex(optionIndex);
+          isPrimaryOptionKey(primaryOptions[optionIndex].key)
+            ? setSecondaryOptionIndex(OptionIndexStatus.NoPrimary)
+            : setSecondaryOptionIndex(OptionIndexStatus.PrimaryNoSub);
         }}
       >
-        {primaryOptionIndex >= 0 ? null : (
+        {primaryOptionIndex >= OptionIndexStatus.HasOption ? null : (
           <Option disabled value="placeholder">
             {t("optionSelect.placeholder")}
           </Option>
@@ -80,7 +88,7 @@ const Options = (props: OptionsProps) => {
             setSecondaryOptionIndex(parseInt(event.target.value))
           }
         >
-          {secondaryOptionIndex >= 0 ? null : (
+          {secondaryOptionIndex >= OptionIndexStatus.HasOption ? null : (
             <Option disabled value="placeholder">
               ...
             </Option>

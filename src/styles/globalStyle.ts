@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     p {
       font-size: 14px;
     }
+    code {
+      font-size: 18px;
+    }
   }
 `;
 

@@ -17,10 +17,14 @@ export type PrimaryOption =
       key: NoSubPrimaryOptionKey;
       option: string;
       usage: string;
-      note: string;
+      note?: string;
     };
 
-export type SecondaryOption = { option: string; usage: string; note: string };
+export type SecondaryOption = {
+  option: string;
+  usage: string;
+  note?: string;
+};
 
 export enum OptionIndexStatus {
   HasOption = 0,
@@ -34,7 +38,7 @@ export const enPrimaryOptions: Array<PrimaryOption> = [
     key: "add",
     option: "add a dependency",
     usage: "poetry add <dependency>",
-    note: "",
+    note: undefined,
   },
 ];
 
@@ -51,6 +55,6 @@ export const enSecondaryOptions: Partial<
       usage: "poetry new poetry-demo",
       note: "aaa",
     },
-    { option: "in a existing project", usage: "poetry init", note: "bbb" },
+    { option: "in a existing project", usage: "poetry init" },
   ],
 };

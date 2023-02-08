@@ -1,6 +1,7 @@
 import { enPrimaryOptions, enSecondaryOptions } from "../data/options";
 
 const en = {
+  placeholder: "　",
   header: {
     part1: "Python",
     part2: "Poetry",

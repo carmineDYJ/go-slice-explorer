@@ -2,7 +2,6 @@ import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import {
-  isPrimaryOptionKey,
   OptionIndexStatus,
   PrimaryOption,
   SecondaryOption,
@@ -80,9 +79,7 @@ const Options = (props: OptionsProps) => {
           setSecondaryOptions(undefined);
           const optionIndex = parseInt(event.target.value);
           setPrimaryOptionIndex(optionIndex);
-          isPrimaryOptionKey(primaryOptions[optionIndex].key)
-            ? setSecondaryOptionIndex(OptionIndexStatus.NoPrimary)
-            : setSecondaryOptionIndex(OptionIndexStatus.PrimaryNoSub);
+          setSecondaryOptionIndex(OptionIndexStatus.NoOption);
         }}
       >
         {primaryOptionIndex >= OptionIndexStatus.HasOption ? null : (

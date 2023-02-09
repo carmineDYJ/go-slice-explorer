@@ -59,10 +59,10 @@ const App = () => {
   const toggleTheme = useThemeStore((state) => state.toggle);
   const changeLanguage = useI18nStore((state) => state.change);
   const [primaryOptionIndex, setPrimaryOptionIndex] = useState(
-    OptionIndexStatus.NoPrimary
+    OptionIndexStatus.NoOption
   );
   const [secondaryOptionIndex, setSecondaryOptionIndex] = useState(
-    OptionIndexStatus.NoPrimary
+    OptionIndexStatus.NoOption
   );
 
   return (

@@ -1,15 +1,14 @@
 import { enPrimaryOptions, enSecondaryOptions } from "../data/options";
 
 const en = {
-  placeholder: "　",
   header: {
-    part1: "Python",
-    part2: "Poetry",
+    part1: "Go",
+    part2: "Slice",
     part3: "Explorer",
   },
   options: {
-    header: "I wanna ...",
-    description: "Get the proper commands without having to search the web.",
+    header: "I have a slice, I wanna ...",
+    description: "Get the proper methods without having to search the web.",
   },
   results: "Usage",
   languageSelect: {

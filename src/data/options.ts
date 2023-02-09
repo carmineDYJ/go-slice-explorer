@@ -1,24 +1,12 @@
 //TODO add enum for option key, -1 for no option, -2 for primary independent option, etc.
 
-const primaryOptionKey = ["setup"] as const;
-type PrimaryOptionKey = typeof primaryOptionKey[number];
-export const isPrimaryOptionKey = (
-  optionKey: any
-): optionKey is PrimaryOptionKey => primaryOptionKey.includes(optionKey);
-type NoSubPrimaryOptionKey = "add";
+type PrimaryOptionKey = "add";
 
 // ignore prettier below
-export type PrimaryOption =
-  | {
-      key: PrimaryOptionKey;
-      option: string;
-    }
-  | {
-      key: NoSubPrimaryOptionKey;
-      option: string;
-      usage: string;
-      note?: string;
-    };
+export type PrimaryOption = {
+  key: PrimaryOptionKey;
+  option: string;
+};
 
 export type SecondaryOption = {
   option: string;
@@ -28,33 +16,66 @@ export type SecondaryOption = {
 
 export enum OptionIndexStatus {
   HasOption = 0,
-  NoPrimary = -1,
-  PrimaryNoSub = -2,
+  NoOption = -1,
 }
 
 export const enPrimaryOptions: Array<PrimaryOption> = [
-  { key: "setup", option: "use poetry" },
   {
     key: "add",
-    option: "add a dependency",
-    usage: "poetry add <dependency>",
-    note: undefined,
+    option: "add elements or slices",
   },
 ];
 
 export const zhPrimaryOptions: Array<PrimaryOption> = [
-  { key: "setup", option: "使用 poetry" },
+  {
+    key: "add",
+    option: "添加元素或切片",
+  },
 ];
 
-export const enSecondaryOptions: Partial<
-  Record<PrimaryOptionKey, Array<SecondaryOption>>
+export const enSecondaryOptions: Record<
+  PrimaryOptionKey,
+  Array<SecondaryOption>
 > = {
-  setup: [
+  add: [
     {
-      option: "for a new project",
-      usage: "poetry new poetry-demo",
-      note: "aaa",
+      option: "into a specific position of another slice",
+      usage: `a := []int{1, 5, 6}
+index := 1
+ele := 4
+a = append(a[:index], append([]int{ele}, a[index:]...)...)
+fmt.Println(a) // Output: [1 4 5 6]
+b := []int{2, 3}
+a = append(a[:index], append(b, a[index:]...)...)
+fmt.Println(a) // Output: [1 2 3 4 5 6]`,
     },
-    { option: "in a existing project", usage: "poetry init" },
+    {
+      option: "to the end of another slice",
+      usage: `a := []int{1, 2, 3}
+a = append(a, 4)
+fmt.Println(a) // Output: [1 2 3 4]
+a = append(a, []int{5, 6}...)
+fmt.Println(a) // Output: [1 2 3 4 5 6]`,
+    },
+    {
+      option: "to the front of another slice",
+      usage: `a := []int{4, 5, 6}
+ele := 3
+a = append([]int{ele}, a...)
+fmt.Println(a) // Output: [3 4 5 6]
+b := []int{1, 2}
+a = append(b, a...)
+fmt.Println(a) // Output: [1 2 3 4 5 6]`,
+    },
+  ],
+};
+
+export const zhSecondaryOptions: Partial<
+  Record<PrimaryOptionKey, Array<Partial<SecondaryOption>>>
+> = {
+  add: [
+    {
+      option: "元素到切片的末尾",
+    },
   ],
 };

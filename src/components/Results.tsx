@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import styled from "styled-components";
 import {
   OptionIndexStatus,
@@ -8,7 +8,7 @@ import {
 } from "../data/options";
 
 const H1 = styled.h1``;
-const Code = styled.code`
+const ResultWrapper = styled.p`
   display: block;
   position: relative;
   width: 100%;
@@ -27,6 +27,16 @@ const Code = styled.code`
     background-color: ${(props) => props.theme.resultsBannerColor};
   }
 `;
+const ResultLine = styled.code`
+  display: block;
+  font-weight: 500;
+`;
+const LineNumber = styled.span`
+  font-family: inherit;
+  font-weight: inherit;
+  user-select: none;
+  color: ${(props) => props.theme.themeColor};
+`;
 
 type ResultsProps = {
   primaryOptionIndex: number;
@@ -38,43 +48,54 @@ type Result = {
 };
 const Results = (props: ResultsProps) => {
   const { primaryOptionIndex, secondaryOptionIndex } = props;
-  const [result, setResult] = useState<Result | undefined>(undefined);
-  const { t } = useTranslation();
+  const [usageExists, setUsageExists] = useState<boolean>(false);
+  const [noteExists, setNoteExists] = useState<boolean>(false);
+  const [primaryOptionKey, setPrimaryOptionKey] = useState<string>();
+  const { t, i18n } = useTranslation();
   useEffect(() => {
-    let result: Result | undefined = undefined;
+    let usageExists = false;
+    let noteExists = false;
+    let primaryOptionKey = undefined;
     if (primaryOptionIndex >= OptionIndexStatus.HasOption) {
       if (secondaryOptionIndex >= OptionIndexStatus.HasOption) {
-        const optionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
-        const option = t(
-          `secondaryOptions.${optionKey}.${secondaryOptionIndex}`,
-          {
-            returnObjects: true,
-          }
-        ) as Result;
-        result = {
-          usage: option.usage,
-          note: option.note,
-        };
-      } else if (secondaryOptionIndex === OptionIndexStatus.PrimaryNoSub) {
-        const option = t(`primaryOptions.${primaryOptionIndex}`, {
-          returnObjects: true,
-        }) as Result;
-        result = {
-          usage: option.usage,
-          note: option.note,
-        };
+        usageExists = true;
+        primaryOptionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
+        noteExists = i18n.exists(
+          `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
+        );
       }
     }
-    setResult(result);
+    setUsageExists(usageExists);
+    setNoteExists(noteExists);
+    setPrimaryOptionKey(primaryOptionKey);
   }, [primaryOptionIndex, secondaryOptionIndex]);
   return (
     <Fragment>
       <H1>Usage</H1>
-      <Code>{result?.usage ?? t("placeholder")}</Code>
-      {result?.note ? (
+      {usageExists ? (
+        <ResultWrapper>
+          {t(
+            `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
+          )
+            .split("\n")
+            .map((line, index) => (
+              <ResultLine key={index}>
+                <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+                {line}
+              </ResultLine>
+            ))}
+        </ResultWrapper>
+      ) : (
+        <ResultWrapper>&nbsp;</ResultWrapper>
+      )}
+      {noteExists ? (
         <Fragment>
           <H1>Note</H1>
-          <Code>{result?.note}</Code>
+          <ResultWrapper>
+            {t(
+              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
+            )}
+          </ResultWrapper>
         </Fragment>
       ) : null}
     </Fragment>

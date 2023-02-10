@@ -72,22 +72,20 @@ const Results = (props: ResultsProps) => {
   return (
     <Fragment>
       <H1>Usage</H1>
-      {usageExists ? (
-        <ResultWrapper>
-          {t(
-            `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
-          )
-            .split("\n")
-            .map((line, index) => (
-              <ResultLine key={index}>
-                <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
-                {line}
-              </ResultLine>
-            ))}
-        </ResultWrapper>
-      ) : (
-        <ResultWrapper>&nbsp;</ResultWrapper>
-      )}
+      <ResultWrapper>
+        {usageExists
+          ? t(
+              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
+            )
+              .split("\n")
+              .map((line, index) => (
+                <ResultLine key={index}>
+                  <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+                  {line}
+                </ResultLine>
+              ))
+          : "　"}
+      </ResultWrapper>
       {noteExists ? (
         <Fragment>
           <H1>Note</H1>

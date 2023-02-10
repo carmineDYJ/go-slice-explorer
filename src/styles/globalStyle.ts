@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 16px;
     }
+    select {
+      font-size: 14px;
+    }
+    option {
+      font-size: 14px;
+    }
     p {
       font-size: 14px;
     }

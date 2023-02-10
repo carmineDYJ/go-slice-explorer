@@ -1,6 +1,6 @@
 //TODO add enum for option key, -1 for no option, -2 for primary independent option, etc.
 
-type PrimaryOptionKey = "add";
+type PrimaryOptionKey = "add" | "sort";
 
 // ignore prettier below
 export type PrimaryOption = {
@@ -23,6 +23,10 @@ export const enPrimaryOptions: Array<PrimaryOption> = [
   {
     key: "add",
     option: "add elements or slices",
+  },
+  {
+    key: "sort",
+    option: "sort a slice",
   },
 ];
 
@@ -68,14 +72,28 @@ a = append(b, a...)
 fmt.Println(a) // Output: [1 2 3 4 5 6]`,
     },
   ],
+  sort: [
+    {
+      option: "reverse the order of a slice",
+      usage: `numbers := []int{1, 2, 3, 4, 5}
+sort.Sort(sort.Reverse(sort.IntSlice(numbers)))
+fmt.Println(numbers) // Output: [5 4 3 2 1]`,
+    },
+    {
+      option: "sort a slice",
+      usage: `numbers := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
+sort.Ints(numbers)
+fmt.Println(numbers) // Output: [1 1 2 3 3 4 5 5 5 6 9]`,
+    },
+    {
+      option: "sort a custom type slice",
+      usage: ``,
+    },
+  ],
 };
 
 export const zhSecondaryOptions: Partial<
   Record<PrimaryOptionKey, Array<Partial<SecondaryOption>>>
 > = {
-  add: [
-    {
-      option: "元素到切片的末尾",
-    },
-  ],
+  add: [{}, { option: "到另一个切片的末尾" }],
 };

@@ -76,13 +76,15 @@ const Options = (props: OptionsProps) => {
       <OptionsSelect
         defaultValue="placeholder"
         onChange={(event) => {
+          setSecondaryOptionIndex(OptionIndexStatus.NoOption);
           setSecondaryOptions(undefined);
           const optionIndex = parseInt(event.target.value);
           setPrimaryOptionIndex(optionIndex);
-          setSecondaryOptionIndex(OptionIndexStatus.NoOption);
         }}
       >
-        {primaryOptionIndex >= OptionIndexStatus.HasOption ? null : (
+        {primaryOptionIndex >= OptionIndexStatus.HasOption ? (
+          <Option disabled>...</Option>
+        ) : (
           <Option disabled value="placeholder">
             {t("optionSelect.placeholder")}
           </Option>
@@ -100,11 +102,9 @@ const Options = (props: OptionsProps) => {
             setSecondaryOptionIndex(parseInt(event.target.value))
           }
         >
-          {secondaryOptionIndex >= OptionIndexStatus.HasOption ? null : (
-            <Option disabled value="placeholder">
-              ...
-            </Option>
-          )}
+          <Option disabled value="placeholder">
+            ...
+          </Option>
           {secondaryOptions.map((option, index) => (
             <Option key={index} value={index}>
               {t(

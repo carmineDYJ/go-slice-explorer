@@ -1,11 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import {
-  OptionIndexStatus,
-  PrimaryOption,
-  SecondaryOption,
-} from "../data/options";
+import { OptionIndexStatus } from "../data/options";
 
 const H1 = styled.h1``;
 const ResultWrapper = styled.p`
@@ -42,38 +38,27 @@ type ResultsProps = {
   primaryOptionIndex: number;
   secondaryOptionIndex: number;
 };
-type Result = {
-  usage: string;
-  note: string | undefined;
-};
 const Results = (props: ResultsProps) => {
   const { primaryOptionIndex, secondaryOptionIndex } = props;
-  const [usageExists, setUsageExists] = useState<boolean>(false);
-  const [noteExists, setNoteExists] = useState<boolean>(false);
   const [primaryOptionKey, setPrimaryOptionKey] = useState<string>();
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    let usageExists = false;
-    let noteExists = false;
     let primaryOptionKey = undefined;
-    if (primaryOptionIndex >= OptionIndexStatus.HasOption) {
-      if (secondaryOptionIndex >= OptionIndexStatus.HasOption) {
-        usageExists = true;
-        primaryOptionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
-        noteExists = i18n.exists(
-          `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
-        );
-      }
+    if (
+      primaryOptionIndex >= OptionIndexStatus.HasOption &&
+      secondaryOptionIndex >= OptionIndexStatus.HasOption
+    ) {
+      primaryOptionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
     }
-    setUsageExists(usageExists);
-    setNoteExists(noteExists);
     setPrimaryOptionKey(primaryOptionKey);
   }, [primaryOptionIndex, secondaryOptionIndex]);
   return (
     <Fragment>
       <H1>Usage</H1>
       <ResultWrapper>
-        {usageExists
+        {i18n.exists(
+          `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
+        )
           ? t(
               `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
             )
@@ -86,7 +71,9 @@ const Results = (props: ResultsProps) => {
               ))
           : "　"}
       </ResultWrapper>
-      {noteExists ? (
+      {i18n.exists(
+        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
+      ) ? (
         <Fragment>
           <H1>Note</H1>
           <ResultWrapper>

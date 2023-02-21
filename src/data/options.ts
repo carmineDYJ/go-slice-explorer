@@ -26,7 +26,7 @@ export const enPrimaryOptions: Array<PrimaryOption> = [
   },
   {
     key: "sort",
-    option: "sort a slice",
+    option: "order a slice",
   },
 ];
 
@@ -85,10 +85,10 @@ fmt.Println(numbers) // Output: [5 4 3 2 1]`,
 sort.Ints(numbers)
 fmt.Println(numbers) // Output: [1 1 2 3 3 4 5 5 5 6 9]`,
     },
-    {
-      option: "sort a custom type slice",
-      usage: ``,
-    },
+    // {
+    //   option: "sort a custom type slice",
+    //   usage: ``,
+    // },
   ],
 };
 

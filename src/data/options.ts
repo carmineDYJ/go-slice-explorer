@@ -11,7 +11,7 @@ export type PrimaryOption = {
 export type SecondaryOption = {
   option: string;
   usage: string;
-  note?: string;
+  output: string;
 };
 
 export enum OptionIndexStatus {
@@ -48,28 +48,34 @@ export const enSecondaryOptions: Record<
 index := 1
 ele := 4
 a = append(a[:index], append([]int{ele}, a[index:]...)...)
-fmt.Println(a) // Output: [1 4 5 6]
+fmt.Println(a)
 b := []int{2, 3}
 a = append(a[:index], append(b, a[index:]...)...)
-fmt.Println(a) // Output: [1 2 3 4 5 6]`,
+fmt.Println(a)`,
+      output: `[1 4 5 6]
+[1 2 3 4 5 6]`,
     },
     {
       option: "to the end of another slice",
       usage: `a := []int{1, 2, 3}
 a = append(a, 4)
-fmt.Println(a) // Output: [1 2 3 4]
+fmt.Println(a)
 a = append(a, []int{5, 6}...)
-fmt.Println(a) // Output: [1 2 3 4 5 6]`,
+fmt.Println(a)`,
+      output: `[1 2 3 4]
+[1 2 3 4 5 6]`,
     },
     {
       option: "to the front of another slice",
       usage: `a := []int{4, 5, 6}
 ele := 3
 a = append([]int{ele}, a...)
-fmt.Println(a) // Output: [3 4 5 6]
+fmt.Println(a)
 b := []int{1, 2}
 a = append(b, a...)
-fmt.Println(a) // Output: [1 2 3 4 5 6]`,
+fmt.Println(a)`,
+      output: `[3 4 5 6]
+      [1 2 3 4 5 6]`,
     },
   ],
   sort: [
@@ -77,13 +83,15 @@ fmt.Println(a) // Output: [1 2 3 4 5 6]`,
       option: "reverse the order of a slice",
       usage: `numbers := []int{1, 2, 3, 4, 5}
 sort.Sort(sort.Reverse(sort.IntSlice(numbers)))
-fmt.Println(numbers) // Output: [5 4 3 2 1]`,
+fmt.Println(numbers)`,
+      output: `[5 4 3 2 1]`,
     },
     {
       option: "sort a slice",
       usage: `numbers := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
 sort.Ints(numbers)
-fmt.Println(numbers) // Output: [1 1 2 3 3 4 5 5 5 6 9]`,
+fmt.Println(numbers)`,
+      output: `[1 1 2 3 3 4 5 5 5 6 9]`,
     },
     // {
     //   option: "sort a custom type slice",

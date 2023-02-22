@@ -26,6 +26,7 @@ const ResultWrapper = styled.p`
 const ResultLine = styled.code`
   display: block;
   font-weight: 500;
+  word-break: break-all;
 `;
 const LineNumber = styled.span`
   font-family: inherit;
@@ -72,14 +73,21 @@ const Results = (props: ResultsProps) => {
           : "　"}
       </ResultWrapper>
       {i18n.exists(
-        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
+        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.output`
       ) ? (
         <Fragment>
-          <H1>Note</H1>
+          <H1>Output</H1>
           <ResultWrapper>
             {t(
-              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.note`
-            )}
+              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.output`
+            )
+              .split("\n")
+              .map((line, index) => (
+                <ResultLine key={index}>
+                  <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+                  {line}
+                </ResultLine>
+              ))}
           </ResultWrapper>
         </Fragment>
       ) : null}

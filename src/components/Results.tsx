@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { OptionIndexStatus } from "../data/options";
 
 const H1 = styled.h1``;
-const ResultWrapper = styled.p`
+const ResultWrapper = styled.div`
   display: block;
   position: relative;
   width: 100%;
@@ -41,56 +41,49 @@ type ResultsProps = {
 };
 const Results = (props: ResultsProps) => {
   const { primaryOptionIndex, secondaryOptionIndex } = props;
-  const [primaryOptionKey, setPrimaryOptionKey] = useState<string>();
   const { t, i18n } = useTranslation();
+  const [usageLines, setUsageLines] = useState<string[]>();
+  const [outputLines, setOutputLines] = useState<string[]>();
   useEffect(() => {
-    let primaryOptionKey = undefined;
+    let usageLines = undefined;
+    let outputLines = undefined;
     if (
       primaryOptionIndex >= OptionIndexStatus.HasOption &&
       secondaryOptionIndex >= OptionIndexStatus.HasOption
     ) {
-      primaryOptionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
+      const primaryOptionKey = t(`primaryOptions.${primaryOptionIndex}.key`);
+      usageLines = t(
+        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
+      ).split("\n");
+      outputLines = t(
+        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.output`
+      ).split("\n");
     }
-    setPrimaryOptionKey(primaryOptionKey);
-  }, [primaryOptionIndex, secondaryOptionIndex]);
+    setUsageLines(usageLines);
+    setOutputLines(outputLines);
+  }, [primaryOptionIndex, secondaryOptionIndex, i18n.language]);
   return (
     <Fragment>
       <H1>Usage</H1>
       <ResultWrapper>
-        {i18n.exists(
-          `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
-        )
-          ? t(
-              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.usage`
-            )
-              .split("\n")
-              .map((line, index) => (
-                <ResultLine key={index}>
-                  <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
-                  {line}
-                </ResultLine>
-              ))
-          : "　"}
+        {/* <Typist key={usageLines}>
+          {usageLines?.map((line, index) => (
+            <ResultLine key={index}>
+              <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+              {line}
+            </ResultLine>
+          )) ?? "　"}
+        </Typist> */}
       </ResultWrapper>
-      {i18n.exists(
-        `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.output`
-      ) ? (
-        <Fragment>
-          <H1>Output</H1>
-          <ResultWrapper>
-            {t(
-              `secondaryOptions.${primaryOptionKey}.${secondaryOptionIndex}.output`
-            )
-              .split("\n")
-              .map((line, index) => (
-                <ResultLine key={index}>
-                  <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
-                  {line}
-                </ResultLine>
-              ))}
-          </ResultWrapper>
-        </Fragment>
-      ) : null}
+      <H1>Output</H1>
+      <ResultWrapper>
+        {/* {output?.split("\n").map((line, index) => (
+          <ResultLine key={index}>
+            <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+            {line}
+          </ResultLine>
+        )) ?? "　"} */}
+      </ResultWrapper>
     </Fragment>
   );
 };

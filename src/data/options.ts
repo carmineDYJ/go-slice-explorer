@@ -103,5 +103,9 @@ fmt.Println(numbers)`,
 export const zhSecondaryOptions: Partial<
   Record<PrimaryOptionKey, Array<Partial<SecondaryOption>>>
 > = {
-  add: [{}, { option: "到另一个切片的末尾" }],
+  add: [
+    {
+      option: "到切片的指定位置",
+    },
+  ],
 };

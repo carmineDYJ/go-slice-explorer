@@ -11,6 +11,7 @@ specifiers:
   react-i18next: ^12.1.4
   sanitize.css: ^13.0.0
   styled-components: ^5.3.6
+  typeit-react: ^2.6.4
   typescript: ^4.9.3
   vite: ^4.0.0
   zustand: ^4.3.2
@@ -23,6 +24,7 @@ dependencies:
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   sanitize.css: 13.0.0
   styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+  typeit-react: 2.6.4
   zustand: 4.3.2_react@18.2.0
 
 devDependencies:
@@ -897,6 +899,19 @@ packages:
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
+    dev: false
+
+  /typeit-react/2.6.4:
+    resolution: {integrity: sha512-ZFx7MYYirvQ1P6qvzN+ONMOWzkktuw2skBln/GQc5xpzqfSA48J2Fn5De/KtVkYbWOuLfKBPTwzJTH+clbAsAA==}
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      typeit: 8.7.1
+    dev: false
+
+  /typeit/8.7.1:
+    resolution: {integrity: sha512-Bx/O4NMz10NWh9FWYtVwV4XwGHF9UDJfpCZPJRtw2/oUcahFAStU8J0t19aroPfTV6s1UlS5ICoqilOqmEnh2Q==}
+    requiresBuild: true
     dev: false
 
   /typescript/4.9.4:

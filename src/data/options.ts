@@ -58,6 +58,7 @@ fmt.Println(a)`,
     {
       option: "to the end of another slice",
       usage: `a := []int{1, 2, 3}
+ele := 4
 a = append(a, 4)
 fmt.Println(a)
 a = append(a, []int{5, 6}...)
@@ -81,16 +82,16 @@ fmt.Println(a)`,
   sort: [
     {
       option: "reverse the order of a slice",
-      usage: `numbers := []int{1, 2, 3, 4, 5}
-sort.Sort(sort.Reverse(sort.IntSlice(numbers)))
-fmt.Println(numbers)`,
+      usage: `a := []int{1, 2, 3, 4, 5}
+sort.Sort(sort.Reverse(sort.IntSlice(a)))
+fmt.Println(a)`,
       output: `[5 4 3 2 1]`,
     },
     {
       option: "sort a slice",
-      usage: `numbers := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
-sort.Ints(numbers)
-fmt.Println(numbers)`,
+      usage: `a := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
+sort.Ints(a)
+fmt.Println(a)`,
       output: `[1 1 2 3 3 4 5 5 5 6 9]`,
     },
     // {

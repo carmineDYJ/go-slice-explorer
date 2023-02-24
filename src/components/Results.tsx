@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import TypeIt from "typeit-react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { OptionIndexStatus } from "../data/options";
@@ -47,6 +48,8 @@ const Results = (props: ResultsProps) => {
   useEffect(() => {
     let usageLines = undefined;
     let outputLines = undefined;
+    setUsageLines(usageLines);
+    setOutputLines(outputLines);
     if (
       primaryOptionIndex >= OptionIndexStatus.HasOption &&
       secondaryOptionIndex >= OptionIndexStatus.HasOption
@@ -66,23 +69,37 @@ const Results = (props: ResultsProps) => {
     <Fragment>
       <H1>Usage</H1>
       <ResultWrapper>
-        {/* <Typist key={usageLines}>
-          {usageLines?.map((line, index) => (
-            <ResultLine key={index}>
-              <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
-              {line}
-            </ResultLine>
-          )) ?? "　"}
-        </Typist> */}
+        {usageLines?.map((line, index) => (
+          <ResultLine key={index}>
+            <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+            <TypeIt
+              key={line.toString()}
+              options={{
+                strings: line,
+                speed: 50,
+                waitUntilVisible: true,
+                cursor: false,
+              }}
+            />
+          </ResultLine>
+        )) ?? "　"}
       </ResultWrapper>
       <H1>Output</H1>
       <ResultWrapper>
-        {/* {output?.split("\n").map((line, index) => (
+        {outputLines?.map((line, index) => (
           <ResultLine key={index}>
             <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
-            {line}
+            <TypeIt
+              key={line}
+              options={{
+                strings: line,
+                speed: 50,
+                waitUntilVisible: true,
+                cursor: false,
+              }}
+            />
           </ResultLine>
-        )) ?? "　"} */}
+        )) ?? "　"}
       </ResultWrapper>
     </Fragment>
   );

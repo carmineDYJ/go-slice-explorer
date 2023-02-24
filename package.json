@@ -16,6 +16,7 @@
     "react-i18next": "^12.1.4",
     "sanitize.css": "^13.0.0",
     "styled-components": "^5.3.6",
+    "typeit-react": "^2.6.4",
     "zustand": "^4.3.2"
   },
   "devDependencies": {

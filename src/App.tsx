@@ -42,6 +42,12 @@ const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
+  @media (max-width: 1376px) {
+    gap: 36px;
+  }
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
 `;
 const Main = styled.main`
   flex-basis: 0;

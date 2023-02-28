@@ -13,9 +13,24 @@ import GlobalStyle from "./styles/globalStyle";
 import { useState } from "react";
 import { OptionIndexStatus } from "./data/options";
 import { getThemeValue } from "./styles/theme";
+import dropDownArrow from "./assets/drop-down-arrow.svg";
 
-const Button = styled.button``;
-const Select = styled.select``;
+const ThemeChange = styled.button`
+  background-color: ${(props) =>
+    getThemeValue(props.theme, "dropDownBackgroundColor")};
+`;
+const LanguageSelect = styled.select`
+  border: none;
+  background-color: ${(props) =>
+    getThemeValue(props.theme, "dropDownBackgroundColor")};
+  background-image: url(${dropDownArrow});
+  background-position: bottom 50% right 3%;
+  padding: 8px 32px 8px 12px;
+  box-shadow: 3px 3px 3px 0px rgba(26, 42, 58, 0.2);
+  &:focus {
+    outline: none;
+  }
+`;
 const Option = styled.option``;
 const H1 = styled.h1``;
 const H1Span = styled.span`
@@ -37,7 +52,15 @@ const PageWrapper = styled.div`
 `;
 const UtilsWrapper = styled.div`
   margin-block-start: 24px;
-  margin-block-end: 48px;
+  margin-block-end: 24px;
+  @media (max-width: 1376px) {
+    margin-block-start: 18px;
+    margin-block-end: 18px;
+  }
+  @media (max-width: 768px) {
+    margin-block-start: 12px;
+    margin-block-end: 12px;
+  }
 `;
 const MainWrapper = styled.div`
   display: flex;
@@ -77,8 +100,8 @@ const App = () => {
       <GlobalStyle />
       <PageWrapper>
         <UtilsWrapper>
-          <Button onClick={toggleTheme}>Toggle Theme</Button>
-          <Select
+          <ThemeChange onClick={toggleTheme}>Toggle Theme</ThemeChange>
+          <LanguageSelect
             onChange={(event) => changeLanguage(event.target.value as Language)}
           >
             {Object.keys(Languages).map((language, index) => (
@@ -86,7 +109,7 @@ const App = () => {
                 {t(`languageSelect.${language}`)}
               </Option>
             ))}
-          </Select>
+          </LanguageSelect>
         </UtilsWrapper>
         <MainWrapper>
           <Aside>

@@ -1,8 +1,11 @@
-//TODO add enum for option key, -1 for no option, -2 for primary independent option, etc.
+type PrimaryOptionKey =
+  | "add"
+  | "remove"
+  | "sort"
+  | "find"
+  | "iterate"
+  | "others";
 
-type PrimaryOptionKey = "add" | "remove" | "sort" | "find";
-
-// ignore prettier below
 export type PrimaryOption = {
   key: PrimaryOptionKey;
   option: string;
@@ -35,6 +38,14 @@ export const enPrimaryOptions: Array<PrimaryOption> = [
   {
     key: "find",
     option: "find elements",
+  },
+  {
+    key: "iterate",
+    option: "iterate items",
+  },
+  {
+    key: "others",
+    option: "do something else",
   },
 ];
 
@@ -128,10 +139,6 @@ sort.Ints(nums)
 fmt.Println(nums)`,
       output: `[1 1 3 4 5 9]`,
     },
-    // {
-    //   option: "sort a custom type slice",
-    //   usage: ``,
-    // },
   ],
   find: [
     {
@@ -186,6 +193,72 @@ for _, num := range nums {
 }
 fmt.Println(result)`,
       output: `[4 5 6]`,
+    },
+  ],
+  iterate: [
+    {
+      option: "execute a function for each element in a slice",
+      usage: `func forEach(nums []int, f func(int)) {
+&nbsp;&nbsp;for _, value := range nums {
+&nbsp;&nbsp;&nbsp;&nbsp;f(value)
+&nbsp;&nbsp;}
+      }
+
+func main() {
+&nbsp;&nbsp;nums := []int{1, 2, 3}
+&nbsp;&nbsp;&nbsp;&nbsp;forEach(nums, func(x int) { fmt.Println(x) })
+}`,
+      output: `1
+2
+3`,
+    },
+    {
+      option: "create a iterator for a slice",
+      usage: `type IntSliceIterator struct {
+&nbsp;&nbsp;slice []int
+&nbsp;&nbsp;index int
+}
+
+func (i *IntSliceIterator) Next() int {
+&nbsp;&nbsp;if !i.HasNext() {
+&nbsp;&nbsp;&nbsp;&nbsp;return -1
+&nbsp;&nbsp;}
+&nbsp;&nbsp;value := i.slice[i.index]
+&nbsp;&nbsp;i.index++
+&nbsp;&nbsp;return value
+}
+
+func (i *IntSliceIterator) HasNext() bool {
+&nbsp;&nbsp;return i.index < len(i.slice)
+}
+
+func main() {
+&nbsp;&nbsp;nums := []int{1, 2, 3}
+&nbsp;&nbsp;iter := &IntSliceIterator{slice: nums, index: 0}
+&nbsp;&nbsp;for iter.HasNext() {
+&nbsp;&nbsp;&nbsp;&nbsp;fmt.Println(iter.Next())
+&nbsp;&nbsp;}
+}`,
+      output: `1
+2
+3`,
+    },
+  ],
+  others: [
+    {
+      option: "find the length of a slice",
+      usage: `nums := []int{1, 2, 3, 4, 5, 6}
+fmt.Println(len(nums))`,
+      output: `6`,
+    },
+    {
+      option: "empty a slice",
+      usage: `nums := []int{1, 2, 3, 4, 5, 6}
+fmt.Println(nums)
+nums = nums[:0]
+fmt.Println(nums)`,
+      output: `[1 2 3 4 5 6]
+[]`,
     },
   ],
 };

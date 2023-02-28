@@ -35,10 +35,22 @@ const ResultLine = styled.code`
 const LineNumber = styled.span`
   font-family: inherit;
   font-weight: inherit;
+  white-space: pre;
   user-select: none;
   color: ${(props) => getThemeValue(props.theme, "themeColor")};
 `;
 
+const formatLineNumber = (lines: string[], lineNumber: number) => {
+  if (lines.length > 10) {
+    if (lineNumber < 10) {
+      return " " + lineNumber.toString();
+    } else {
+      return lineNumber.toString();
+    }
+  } else {
+    return lineNumber.toString();
+  }
+};
 type ResultsProps = {
   primaryOptionIndex: number;
   secondaryOptionIndex: number;
@@ -74,7 +86,9 @@ const Results = (props: ResultsProps) => {
       <ResultWrapper>
         {usageLines?.map((line, index) => (
           <ResultLine key={index}>
-            <LineNumber>{index}&nbsp;&nbsp;</LineNumber>
+            <LineNumber>
+              {formatLineNumber(usageLines, index)}&nbsp;&nbsp;
+            </LineNumber>
             <TypeIt
               key={line.toString()}
               options={{

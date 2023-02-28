@@ -11,15 +11,7 @@ type ThemeKey =
   | "resultsBannerColor";
 type ExtendedTheme = Record<ThemeKey, string>;
 declare module "styled-components" {
-  export interface DefaultTheme extends ExtendedTheme {
-    // fontColor?: string;
-    // themeColor?: string;
-    // backgroundColor?: string;
-    // dropDownBackgroundColor?: string;
-    // resultsBackgroundColor?: string;
-    // resultsFontColor?: string;
-    // resultsBannerColor?: string;
-  }
+  export interface DefaultTheme extends ExtendedTheme {}
 }
 
 export const lightTheme: DefaultTheme = {
@@ -32,9 +24,7 @@ export const lightTheme: DefaultTheme = {
   resultsBannerColor: "#4a5a6a",
 };
 //TODO perfect dark theme
-export const darkTheme: Partial<DefaultTheme> = {
-  fontColor: "red",
-};
+export const darkTheme: Partial<DefaultTheme> = {};
 
 export const getThemeValue = (theme: DefaultTheme, key: ThemeKey): string => {
   return theme[key] ?? lightTheme[key];

@@ -1,9 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import { getThemeValue } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    color: ${(props) => props.theme.fontColor};
-    background-color: ${(props) => props.theme.backgroundColor};
+    color: ${(props) => getThemeValue(props.theme, "fontColor")};
+    background-color: ${(props) =>
+      getThemeValue(props.theme, "backgroundColor")};
     h1 {
       font-size: 24px;
     }

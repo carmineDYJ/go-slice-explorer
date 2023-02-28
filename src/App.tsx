@@ -12,13 +12,14 @@ import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
 import { useState } from "react";
 import { OptionIndexStatus } from "./data/options";
+import { getThemeValue } from "./styles/theme";
 
 const Button = styled.button``;
 const Select = styled.select``;
 const Option = styled.option``;
 const H1 = styled.h1``;
 const H1Span = styled.span`
-  color: ${(props) => props.theme.themeColor};
+  color: ${(props) => getThemeValue(props.theme, "themeColor")};
 `;
 const P = styled.p``;
 const PageWrapper = styled.div`

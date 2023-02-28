@@ -3,6 +3,7 @@ import TypeIt from "typeit-react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { OptionIndexStatus } from "../data/options";
+import { getThemeValue } from "../styles/theme";
 
 const H1 = styled.h1``;
 const ResultWrapper = styled.div`
@@ -11,8 +12,9 @@ const ResultWrapper = styled.div`
   width: 100%;
   padding: 28px 12px;
   border-radius: 6px;
-  background-color: ${(props) => props.theme.resultsBackgroundColor};
-  color: ${(props) => props.theme.resultsFontColor};
+  background-color: ${(props) =>
+    getThemeValue(props.theme, "resultsBackgroundColor")};
+  color: ${(props) => getThemeValue(props.theme, "resultsFontColor")};
   overflow: hidden;
   &:before {
     content: "";
@@ -21,7 +23,8 @@ const ResultWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 8px;
-    background-color: ${(props) => props.theme.resultsBannerColor};
+    background-color: ${(props) =>
+      getThemeValue(props.theme, "resultsBannerColor")};
   }
 `;
 const ResultLine = styled.code`
@@ -33,7 +36,7 @@ const LineNumber = styled.span`
   font-family: inherit;
   font-weight: inherit;
   user-select: none;
-  color: ${(props) => props.theme.themeColor};
+  color: ${(props) => getThemeValue(props.theme, "themeColor")};
 `;
 
 type ResultsProps = {

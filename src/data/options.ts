@@ -148,9 +148,32 @@ fmt.Println(false)`,
       output: `true`,
     },
     {
-      option: "",
-      usage: ``,
-      output: ``,
+      option: "find the first index of an element in a slice",
+      usage: `nums := []int{1, 5, 3, 4, 5, 6}
+target := 5
+firstIndex := -1
+for i, num := range nums {
+&nbsp;&nbsp;if num == target {
+&nbsp;&nbsp;&nbsp;&nbsp;firstIndex = i
+&nbsp;&nbsp;&nbsp;&nbsp;break
+&nbsp;&nbsp;}
+}
+fmt.Println(firstIndex)`,
+      output: `1`,
+    },
+    {
+      option: "find the last index of an element in a slice",
+      usage: `nums := []int{1, 5, 3, 4, 5, 6}
+target := 5
+lastIndex := -1
+for i := len(nums) - 1; i >= 0; i-- {
+&nbsp;&nbsp;if nums[i] == target {
+&nbsp;&nbsp;&nbsp;&nbsp;lastIndex = i
+&nbsp;&nbsp;&nbsp;&nbsp;break
+&nbsp;&nbsp;}
+}
+fmt.Println(lastIndex)`,
+      output: `4`,
     },
     {
       option: "find elements based on a condition",

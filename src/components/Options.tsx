@@ -30,7 +30,11 @@ const OptionsSelect = styled.select`
     margin-bottom: 24px;
   }
 `;
-const Option = styled.option``;
+const Option = styled.option`
+  :disabled {
+    color: ${(props) => getThemeValue(props.theme, "fontColor")};
+  }
+`;
 
 type OptionsProps = {
   primaryOptionIndex: number;

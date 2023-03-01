@@ -31,6 +31,7 @@ const ResultLine = styled.code`
   display: block;
   font-weight: 500;
   word-break: break-all;
+  color: ${(props) => getThemeValue(props.theme, "resultsFontColor")};
 `;
 const LineNumber = styled.span`
   font-family: inherit;

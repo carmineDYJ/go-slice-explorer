@@ -12,19 +12,22 @@ import Results from "./components/Results";
 import GlobalStyle from "./styles/globalStyle";
 import { useState } from "react";
 import { OptionIndexStatus } from "./data/options";
-import { getThemeValue } from "./styles/theme";
-import dropDownArrow from "./assets/drop-down-arrow.svg";
+import { getThemeValue, lightTheme } from "./styles/theme";
+import DropDownArrow from "./assets/drop-down-arrow.svg";
+import { BsMoonFill, BsSun } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 
 const ThemeChange = styled.button`
-  background-color: ${(props) =>
-    getThemeValue(props.theme, "dropDownBackgroundColor")};
+  border: none;
+  margin-inline-end: 12px;
+  cursor: pointer;
 `;
 const LanguageSelect = styled.select`
   border: none;
   background-color: ${(props) =>
     getThemeValue(props.theme, "dropDownBackgroundColor")};
-  background-image: url(${dropDownArrow});
-  background-position: bottom 50% right 3%;
+  background-image: url(${DropDownArrow});
+  background-position: bottom 50% right 6%;
   padding: 8px 32px 8px 12px;
   box-shadow: 3px 3px 3px 0px rgba(26, 42, 58, 0.2);
   &:focus {
@@ -51,6 +54,8 @@ const PageWrapper = styled.div`
   }
 `;
 const UtilsWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin-block-start: 24px;
   margin-block-end: 24px;
   @media (max-width: 1376px) {
@@ -100,7 +105,16 @@ const App = () => {
       <GlobalStyle />
       <PageWrapper>
         <UtilsWrapper>
-          <ThemeChange onClick={toggleTheme}>Toggle Theme</ThemeChange>
+          <ThemeChange onClick={toggleTheme}>
+            <IconContext.Provider
+              value={{
+                color: getThemeValue(theme, "toggleThemeButtonColor"),
+                size: "24px",
+              }}
+            >
+              {theme === lightTheme ? <BsSun /> : <BsMoonFill />}
+            </IconContext.Provider>
+          </ThemeChange>
           <LanguageSelect
             onChange={(event) => changeLanguage(event.target.value as Language)}
           >

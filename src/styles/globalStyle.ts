@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
     code {
       font-size: 18px;
     }
+    select {
+      cursor: pointer;
+    }
   }
 `;
 

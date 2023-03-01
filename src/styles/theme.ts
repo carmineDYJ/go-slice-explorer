@@ -26,13 +26,18 @@ export const lightTheme: DefaultTheme = {
   resultsBannerColor: "#4a5a6a",
 };
 //TODO perfect dark theme
-export const darkTheme: Partial<DefaultTheme> = {
+export const darkTheme: DefaultTheme = {
   fontColor: "#fffafa",
   backgroundColor: "#121212",
   toggleThemeButtonColor: "white",
   dropDownBackgroundColor: "#646464",
   resultsBackgroundColor: "#dddddd",
   resultsFontColor: "#1a2a3a",
+};
+
+export const themes: Record<string, DefaultTheme> = {
+  light: lightTheme,
+  dark: darkTheme,
 };
 
 export const getThemeValue = (theme: DefaultTheme, key: ThemeKey): string => {

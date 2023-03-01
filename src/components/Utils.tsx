@@ -38,6 +38,7 @@ const LanguageSelect = styled.select`
   &:focus {
     outline: none;
   }
+  border-radius: 4px;
 `;
 const Option = styled.option``;
 

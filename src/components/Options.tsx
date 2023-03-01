@@ -22,6 +22,7 @@ const OptionsSelect = styled.select`
   background-position: bottom 50% right 3%;
   padding: 8px 32px 8px 12px;
   box-shadow: 3px 3px 3px 0px rgba(26, 42, 58, 0.2);
+  border-radius: 4px;
 
   &:focus {
     outline: none;

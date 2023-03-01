@@ -96,7 +96,7 @@ b := []int{1, 2}
 nums = append(b, nums...)
 fmt.Println(nums)`,
       output: `[3 4 5 6]
-      [1 2 3 4 5 6]`,
+[1 2 3 4 5 6]`,
     },
   ],
   remove: [

@@ -206,7 +206,7 @@ fmt.Println(result)`,
 
 func main() {
 &nbsp;&nbsp;nums := []int{1, 2, 3}
-&nbsp;&nbsp;&nbsp;&nbsp;forEach(nums, func(x int) { fmt.Println(x) })
+&nbsp;&nbsp;forEach(nums, func(x int) { fmt.Println(x) })
 }`,
       output: `1
 2

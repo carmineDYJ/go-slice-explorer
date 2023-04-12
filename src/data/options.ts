@@ -54,6 +54,26 @@ export const zhPrimaryOptions: Array<PrimaryOption> = [
     key: "add",
     option: "添加元素或切片",
   },
+  {
+    key: "remove",
+    option: "删除元素",
+  },
+  {
+    key: "sort",
+    option: "排序",
+  },
+  {
+    key: "find",
+    option: "查找元素",
+  },
+  {
+    key: "iterate",
+    option: "遍历元素",
+  },
+  {
+    key: "others",
+    option: "其他",
+  },
 ];
 
 export const enSecondaryOptions: Record<
@@ -269,6 +289,61 @@ export const zhSecondaryOptions: Partial<
   add: [
     {
       option: "到切片的指定位置",
+    },
+    {
+      option: "到切片的末尾",
+    },
+    {
+      option: "到切片的开头",
+    },
+  ],
+  remove: [
+    {
+      option: "移除一个或多个元素",
+    },
+    {
+      option: "移除切片的第一个元素",
+    },
+    {
+      option: "移除切片的最后一个元素",
+    },
+  ],
+  sort: [
+    {
+      option: "反转切片的顺序",
+    },
+    {
+      option: "对切片进行排序",
+    },
+  ],
+  find: [
+    {
+      option: "查找切片中是否存在某个元素",
+    },
+    {
+      option: "查找切片中某个元素的第一个索引",
+    },
+    {
+      option: "查找切片中某个元素的最后一个索引",
+    },
+    {
+      option: "查找切片中满足条件的元素",
+    },
+  ],
+  iterate: [
+    {
+      option: "对切片中的每个元素执行一个函数",
+    },
+    {
+      option: "创建一个切片的迭代器",
+    },
+  ],
+  others: [
+    {
+      option: "获取切片的长度",
+    },
+    {
+      option: "清空切片",
     },
   ],
 };

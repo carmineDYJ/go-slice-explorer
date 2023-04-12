@@ -10,7 +10,6 @@ const en = {
     header: "I have a slice, I wanna ...",
     description: "Get the proper methods without having to search the web.",
   },
-  results: "Usage",
   languageSelect: {
     en: "English",
     zh: "中文",
